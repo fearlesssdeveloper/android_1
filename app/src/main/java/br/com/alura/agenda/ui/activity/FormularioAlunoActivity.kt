@@ -28,7 +28,7 @@ class FormularioAlunoActivity : AppCompatActivity() {
             val telefone = campoTelefone.text.toString()
             val email = campoEmail.text.toString()
             val aluno = Aluno(nome, telefone, email)
-            Toast.makeText(this, "${aluno.nome} - ${aluno.telefone} - ${aluno.email}", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "${aluno.nome} - ${aluno.telefone} - ${aluno.email}", Toast.LENGTH_LONG).show()
             dao.salva(aluno)
             val intent = Intent(this, ListaAlunosActivity::class.java)
             startActivity(intent)
