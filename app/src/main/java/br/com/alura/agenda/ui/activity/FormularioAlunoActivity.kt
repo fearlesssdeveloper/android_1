@@ -30,8 +30,9 @@ class FormularioAlunoActivity : AppCompatActivity() {
             val aluno = Aluno(nome, telefone, email)
 //            Toast.makeText(this, "${aluno.nome} - ${aluno.telefone} - ${aluno.email}", Toast.LENGTH_LONG).show()
             dao.salva(aluno)
-            val intent = Intent(this, ListaAlunosActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, ListaAlunosActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
     }
 }
