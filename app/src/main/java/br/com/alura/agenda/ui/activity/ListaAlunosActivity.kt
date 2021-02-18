@@ -15,16 +15,29 @@ class ListaAlunosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_alunos)
         title = "Lista de Alunos"
-        val botaoNovoAluno = findViewById<FloatingActionButton>(R.id.activity_lista_alunos_fab_novo_aluno)
+        configuraFabNovoAluno()
+    }
+
+    private fun configuraFabNovoAluno() {
+        val botaoNovoAluno =
+            findViewById<FloatingActionButton>(R.id.activity_lista_alunos_fab_novo_aluno)
         botaoNovoAluno.setOnClickListener {
-            startActivity(Intent(this, FormularioAlunoActivity::class.java))
+            abreFormularioAlunoActivity()
         }
+    }
+
+    private fun abreFormularioAlunoActivity() {
+        startActivity(Intent(this, FormularioAlunoActivity::class.java))
     }
 
     override fun onResume() {
         super.onResume()
+        configuraLista()
+    }
 
+    private fun configuraLista() {
         val listaDeAlunos = findViewById<ListView>(R.id.activity_lista_alunos_listview)
-        listaDeAlunos.adapter = ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos)
+        listaDeAlunos.adapter =
+            ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos)
     }
 }
