@@ -2,10 +2,8 @@ package br.com.alura.agenda.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.agenda.R
 import br.com.alura.agenda.dao.AlunoDAO
@@ -48,7 +46,11 @@ class ListaAlunosActivity : AppCompatActivity() {
         listaDeAlunos.adapter =
             ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos)
         listaDeAlunos.setOnItemClickListener { adapterView, view, posicao, id ->
-            Log.i("posição aluno", "configuraLista: $posicao")
+            val aluno = alunos[posicao]
+            val intent = Intent(this, FormularioAlunoActivity::class.java)
+            intent.putExtra("aluno", aluno)
+            startActivity(intent)
+//            Log.i("aluno", "configuraLista: $aluno")
         }
     }
 }

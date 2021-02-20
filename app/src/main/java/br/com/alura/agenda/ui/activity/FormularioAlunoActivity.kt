@@ -23,6 +23,12 @@ class FormularioAlunoActivity : AppCompatActivity() {
         title = "Novo aluno"
         inicializacaoDosCampos()
         configuraBotaoSalvar()
+
+        val dados = intent
+        val aluno: Aluno = dados.getParcelableExtra("aluno") as Aluno
+        campoNome.setText(aluno.nome)
+        campoTelefone.setText(aluno.telefone)
+        campoEmail.setText(aluno.email)
     }
 
     private fun configuraBotaoSalvar() {
