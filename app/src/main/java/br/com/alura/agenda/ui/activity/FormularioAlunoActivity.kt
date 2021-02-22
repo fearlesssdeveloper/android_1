@@ -11,6 +11,7 @@ import br.com.alura.agenda.model.Aluno
 
 class FormularioAlunoActivity : AppCompatActivity() {
 
+    private lateinit var aluno: Aluno
     private val dao = AlunoDAO()
     private lateinit var campoNome: EditText
     private lateinit var campoTelefone: EditText
@@ -25,7 +26,7 @@ class FormularioAlunoActivity : AppCompatActivity() {
         configuraBotaoSalvar()
 
         val dados = intent
-        val aluno: Aluno = dados.getParcelableExtra("aluno") as Aluno
+        aluno = dados.getParcelableExtra("aluno") as Aluno
         campoNome.setText(aluno.nome)
         campoTelefone.setText(aluno.telefone)
         campoEmail.setText(aluno.email)
@@ -34,8 +35,11 @@ class FormularioAlunoActivity : AppCompatActivity() {
     private fun configuraBotaoSalvar() {
         val botaoSalvar = findViewById<Button>(R.id.activity_formulario_aluno_botao_salvar)
         botaoSalvar.setOnClickListener {
-            val aluno = criaAluno()
-            salva(aluno)
+//            val aluno = preencheAluno()
+//            salva(aluno)
+            preencheAluno()
+            dao.edita(aluno)
+            finish()
         }
     }
 
@@ -50,10 +54,14 @@ class FormularioAlunoActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun criaAluno(): Aluno {
+    private fun preencheAluno() {
         val nome = campoNome.text.toString()
         val telefone = campoTelefone.text.toString()
         val email = campoEmail.text.toString()
-        return Aluno(nome, telefone, email)
+        aluno.nome = nome
+        aluno.telefone = telefone
+        aluno.email = email
+
+//        return Aluno(nome = nome, telefone = telefone, email = email)
     }
 }

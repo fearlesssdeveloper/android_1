@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Aluno(val nome: String, val telefone: String, val email: String) : Parcelable{
+data class Aluno(var id: Int = 0, var nome: String, var telefone: String, var email: String) : Parcelable{
+
     override fun toString(): String {
         return nome
     }
